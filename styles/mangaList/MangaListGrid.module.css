@@ -1,0 +1,16 @@
+.mangaListGrid {
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    row-gap: 1em;
+    align-items: start;
+    justify-items: start;
+}
+.mangaSingleItem {
+    box-shadow: 0 20px 30px 0 rgb(0 0 0 / 20%);
+    transition: box-shadow .3s ease-in,transform .15s ease-in;
+}
+
+.mangaSingleItem:hover {
+    box-shadow: 0 20px 30px 0 rgb(0 0 0 / 60%);
+    transform: scale(1.07);
+}

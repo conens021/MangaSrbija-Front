@@ -1,0 +1,21 @@
+.sideBar{
+    width: 230px;
+    border-right: 1px solid #242424;
+    border-left: 1px solid #242424;
+    padding-top: 2em;
+    color:white;
+}
+.menuList{
+    display: flex;
+    flex-direction: column;
+}
+
+.menuTitle{
+    padding-left: 2rem;
+}
+
+@media screen and (max-width:1400px) {
+    .sideBar{
+       display: none;
+    }
+}

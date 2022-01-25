@@ -1,0 +1,14 @@
+.siteWrapper{
+    background:url('/naruto_vs_sasuke_manga_panel_by_tokai2000_d9etkz0-pre.jpg');
+    position: relative;
+}
+
+.backdrop{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(34, 34, 34,0.8);
+
+}

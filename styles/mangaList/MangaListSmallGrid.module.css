@@ -1,0 +1,17 @@
+.mangaListGrid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1em;
+    align-items: stretch;
+}
+
+.mangaSingleItem {
+    transition: box-shadow .3s ease-in, transform .15s ease-in;
+    cursor: pointer;
+    display: flex;
+    column-gap: 1em;
+}
+
+.mangaSingleItem:hover {
+    transform: scale(1.07);
+}

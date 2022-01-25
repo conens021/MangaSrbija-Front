@@ -1,0 +1,92 @@
+.grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 800px;
+}
+
+.chapterWideItem {
+    flex: 1;
+    min-width: 110px;
+    max-width: 110px;
+}
+
+.chapterName {
+    font-size: 13px;
+    text-align: center;
+}
+
+.chapterLink {
+    text-align: center;
+}
+
+.chapterImageContainer {
+    border-radius: 100%;
+    height: 110px;
+    position: relative;
+}
+
+
+.popularMangaContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    row-gap: .8em;
+}
+
+.pageTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sort {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: .5em;
+}
+
+.categoryTags {
+    padding: 0 1rem;
+    text-align: center;
+}
+
+.letters {
+    display: flex;
+    justify-content: space-around;
+    max-width: 100%;
+    flex-wrap: wrap-reverse;
+}
+
+.letterSingle {
+    background-color: red;
+    padding: .5em .8em;
+    border-radius: 50%;
+}
+
+
+
+@media (max-width: 768px) {
+    .grid {
+        width: 100%;
+        flex-direction: column;
+    }
+
+
+    .chapterWideItem {
+        min-width: 61px;
+        max-width: 61px;
+    }
+
+    .chapterImageContainer {
+        height: inherit;
+    }
+
+    .imgRounded {
+        height: 61px;
+        padding: 4px;
+    }
+}

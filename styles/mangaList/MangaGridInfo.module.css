@@ -1,0 +1,72 @@
+
+.grid{
+    display: grid;  
+    grid-template-columns: repeat(2,1fr);
+    align-items: flex-end;
+    column-gap: .8em;
+    row-gap: 2em;
+
+}
+.mangaSingle{
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;   
+    border: 1px solid #444444;
+}
+.mangaTop{
+    display: grid;
+    grid-template-columns: 3fr 6fr;
+    column-gap: 1em;
+    padding: 1rem;
+    border-bottom: 1px solid #444444;
+
+}
+.mangaImage{
+    display: flex;
+    height: 200px;
+    box-shadow: 0 20px 30px 0 rgb(0 0 0 / 40%);
+}
+
+.mangaInfo{
+    display: flex;
+    flex-direction: column;
+    row-gap: .4em;
+}
+
+.mangaBottom{
+    display: flex;
+    justify-content: space-between;
+}
+
+.mangaBottom > div{
+    flex: 1;
+    padding-left: 1em;
+    padding-top: 8px;
+    padding-bottom: 8px;
+
+}
+
+.mangaBottom > div:first-child{
+    flex: 1;
+    border-right: 1px solid #444444;
+
+}
+.mangaBottom > div:last-child{
+    flex: 1;
+    border-left: 1px solid #444444;
+}
+
+.typeTitle{
+    color: #6d7080;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.typeValue{
+    font-size: 13px;
+}
+
+
+
+

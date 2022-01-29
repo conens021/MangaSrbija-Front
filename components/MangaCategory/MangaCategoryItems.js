@@ -26,7 +26,7 @@ function MangaCategory({mangas,category}) {
     }
 
     return(
-        <MangaGridWithInfo mangas={mangasData}/>
+        <MangaGridWithInfo cropSummary={true} mangas={mangasData}/>
     )
   
 }

@@ -32,7 +32,7 @@ function ChapterListWide({ chapters }) {
   return (
     <Box sx={{ display: "flex", columnGap: ".7em" }}>
       {chapters.map((chapter) => (
-        <Link href={`/manga/${chapter.mangaId}`}>
+        <Link href={`/poglavlje/${chapter.chapterId}`}>
           <Box
             key={chapter.chapterId}
             style={{

@@ -21,7 +21,7 @@ function PopularMangaItems({ mangas }) {
     setMangasData(updatedMangaData);
   }
 
-  return <MangaGridWithInfo mangas={mangasData} />;
+  return <MangaGridWithInfo cropSummary={true} mangas={mangasData} />;
 }
 
 export default PopularMangaItems;

@@ -36,5 +36,6 @@ export const darkTheme = createTheme({
         text: {
             primary: "#f2f2f2"
         }
-    }
+
+    },
 })

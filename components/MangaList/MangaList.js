@@ -21,7 +21,6 @@ function MangaListItems({ mangas, perPage }) {
     if (startingLetter !== "") {
       if (startingLetter === "#") {
         getMangasByLetter("all");
-        console.log(`Getting all mangas`);
         return;
       }
       getMangasByLetter(startingLetter);

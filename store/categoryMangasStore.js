@@ -4,6 +4,8 @@ const initialState = {
   orderBy: "",
   page: 0,
   startingLetter: "",
+  showLoginModal: false,
+  userLogedIn: false,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -11,12 +13,17 @@ const rootReducer = (state = initialState, action) => {
     case "SET_ORDER_BY":
       return { ...state, orderBy: action.orderBy };
     case "SET_PAGE":
-      console.log("CHANGE_PAGE to" + action.page);
       return { ...state, page: action.page };
     case "SET_STARTING_LETTER":
-      console.log(`SETTING LETTER TO :${action.startingLetter}`)
       return { ...state, startingLetter: action.startingLetter };
-
+    case "SHOW_LOGIN_MODAL":
+      return { ...state, showLoginModal: true };
+    case "CLOSE_LOGIN_MODAL":
+      return { ...state, showLoginModal: false };
+    case "USER_LOGIN":
+      return { ...state, userLogedIn: true };
+    case "USER_LOGOUT":
+      return { ...state, userLogedIn: false };
     default:
       return {
         ...state,

@@ -2,22 +2,25 @@ import Head from "next/head";
 //styles
 import styles from "../../styles/mangaSingle/MangaSingle.module.css";
 //API
-import { getMangaById } from "../../api/mangas";
+import { getMangaById, getAllMangaIds } from "../../api/mangas";
 import { getCategories } from "../../api/categories";
+import { getAllByManga } from "../../api/chapters";
 //components
 import SideBar from "../../components/layout/SideBar/SideBar";
 import { Box } from "@mui/material";
 import { useRefreshState } from "../../store/useRefreshState";
 import { useRouter } from "next/router";
-import MangaInfo from "../../components/MangaSingle/MangaInfo";
+import MangaHeading from "../../components/MangaSingle/MangaHeading";
 import { Fragment, useEffect } from "react";
 import MangaItemWithInfo from "../../components/UI/MangaList/MangaItemWIthInfo";
-import RateManga from "../../components/RateManga/RateManga";
+import ChapterList from "../../components/CapterList/ChapterList";
 
 function MostPopular(props) {
+  
   const router = useRouter();
   const { manga } = props;
   const { categories } = props;
+  const { chapters } = props;
 
   const [refreshState] = useRefreshState();
 
@@ -39,10 +42,26 @@ function MostPopular(props) {
       <Box bgcolor={"background.default"} className="container">
         <SideBar categories={categories} />
         <main className={styles.main}>
-          <MangaInfo manga={manga} styles={styles} />
-          <Box sx={{display:'grid',gridTemplateColumns:'3fr 1fr',columnGap:'1em',alignItems:'stretch'}}>
-            <MangaItemWithInfo manga={manga} styles={styles} />
-             <RateManga />
+          <MangaHeading manga={manga} styles={styles} />
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: "3fr 1fr",
+              columnGap: "1em",
+              alignItems: "start",
+              height: "100%",
+            }}
+          >
+            <Box
+              sx={{ display: "flex", flexDirection: "column", rowGap: "2em" }}
+            >
+              <MangaItemWithInfo
+                cropSummary={false}
+                manga={manga}
+                styles={styles}
+              />
+            </Box>
+            <ChapterList chapters={chapters} width={360} />
           </Box>
         </main>
       </Box>
@@ -53,28 +72,26 @@ function MostPopular(props) {
 export async function getStaticProps({ params }) {
   const categories = await getCategories();
   const manga = await getMangaById(params.id);
-
+  const chapters = await getAllByManga(params.id);
   return {
     props: {
       manga,
       categories,
+      chapters,
     },
   };
 }
 
 export async function getStaticPaths() {
-  const paths = [
-    {
-      params: { id: "1" },
-      params: { id: "2" },
-      params: { id: "3" },
-      params: { id: "4" },
-      params: { id: "5" },
-      params: { id: "6" },
-      params: { id: "7" },
-      params: { id: "8" },
-    },
-  ];
+
+  const mangaIds = await getAllMangaIds();
+
+  const paths = mangaIds.map((id) => {
+    return {
+      params: { id: id.toString() },
+    };
+  });
+
   return {
     fallback: true,
     paths,

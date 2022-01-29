@@ -38,10 +38,14 @@ p{
   font-weight: 400;
 }
 
-
 .container {
   display: flex;
   width: 1200px;
   margin: auto;
   position: relative;
 }
+
+.MuiOutlinedInput-root{
+  background-color: #242424;
+}
+

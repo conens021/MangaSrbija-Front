@@ -12,7 +12,6 @@ import { useDispatch } from "react-redux";
 import { Box } from "@mui/system";
 import { useRefreshState } from "../../store/useRefreshState";
 
-
 function CategoryPage(props) {
 
   const router = useRouter();
@@ -36,7 +35,6 @@ function CategoryPage(props) {
 
     };
   }, []);
-
 
   return (
     <Fragment>
@@ -76,6 +74,7 @@ function CategoryPage(props) {
 }
 
 export async function getStaticProps(context) {
+  
   const categories = await getCategories();
 
   const { params } = context;

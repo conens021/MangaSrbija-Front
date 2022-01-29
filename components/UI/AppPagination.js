@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 function AppPagination({pages}) {
 
   const dispatch = useDispatch();
+  
   const [page,setPage] = useState(1)
 
   const pageChangedHandler = (event, value) => {

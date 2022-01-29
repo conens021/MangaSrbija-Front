@@ -25,7 +25,6 @@ function MostPopular(props) {
   const { mangasCount } = props;
   const [refreshState] = useRefreshState();
 
-
   useEffect(() => {
     const pageNum =
       mostPopular.length === 0 ? 0 : Math.round(mangasCount / perPage);

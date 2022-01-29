@@ -1,17 +1,15 @@
-import { Box, Button, Modal, TextField, Typography } from "@mui/material";
-import { useState } from "react";
+import {Button} from "@mui/material";
+import { useDispatch } from "react-redux";
+import LoginModal from "../../Login/LoginModal";
 
 function HeaderAuth({ styles }) {
-  const [loginModalVisible, setLoginModalVisible] = useState(false);
+
+  const dispatch = useDispatch()
 
   const showLoginModal = () => {
-    setLoginModalVisible(!loginModalVisible);
-  };
-
-  const closeLoginModal = () => {
-    setLoginModalVisible(false);
-  };
-
+    dispatch({type:'SHOW_LOGIN_MODAL'})
+  }
+  
   return (
     <div className={styles.headerAuth}>
       <Button color="secondary" variant="contained" onClick={showLoginModal}>
@@ -21,41 +19,7 @@ function HeaderAuth({ styles }) {
         Otvori Nalog
       </Button>
 
-      <Modal
-        open={loginModalVisible}
-        onClose={closeLoginModal}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box
-          className={styles.loginModal}
-          sx={{
-        
-          }}
-        >
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
-          </Typography>
-          <TextField
-            id="outlined-basic"
-            label="Korisničko ime"
-            variant="outlined"
-          />
-          <TextField
-            id="outlined-password-input"
-            label="Password"
-            type="password"
-            autoComplete="current-password"
-          />
-          <Button
-            color="secondary"
-            variant="contained"
-          >
-            Uloguj Se
-          </Button>
-    
-        </Box>
-      </Modal>
+      <LoginModal styles={styles}/>
     </div>
   );
 }

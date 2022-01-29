@@ -2,14 +2,13 @@ import axios from "axios";
 import { API_BASE, MANGAS } from "./constants";
 
 export const getRecentlyAdded = () => {
-  console.log("CALLING SERVER")
   return axios
-    .get(`${API_BASE}/${MANGAS}/recenlty-added`)
+    .get(`${API_BASE}/${MANGAS}?orderBy=rdd&page=1&perPage=10`)
     .then((r) => {
       return r.data;
     })
     .catch((e) => {
-      console.log("greska u getRecentlyAdded");
+      console.log(e);
       throw e;
     });
 };
@@ -45,10 +44,8 @@ export const getMostPopular = (page = 1,perPage = 2) => {
 }
 
 export const getTopRated = () => {
-  console.log("CALLING SERVER")
-
   return axios
-    .get(`${API_BASE}/${MANGAS}/top-rated`)
+    .get(`${API_BASE}/${MANGAS}?orderBy=BV&page=1&perPage=10`)
     .then((r) => {
       return r.data;
     })
@@ -75,8 +72,6 @@ export const countMangas = () => {
 
 export const getMangaById = (id) => {
 
-  console.log("CALLING MANGA ID SERVER")
-
   return axios
     .get(`${API_BASE}/${MANGAS}/${id}`)
     .then((r) => {
@@ -88,6 +83,19 @@ export const getMangaById = (id) => {
     });
 }
 
+
+export const getAllMangaIds = () =>{
+  return axios
+    .get(`${API_BASE}/mangas-ids`)
+    .then((r) => {
+      console.log(r.data)
+      return r.data;
+    })
+    .catch((e) => {
+      console.log("greska u mangas ids");
+      throw e;
+    });
+} 
 
 
 

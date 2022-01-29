@@ -1,5 +1,6 @@
 import { Paper } from "@mui/material";
 import ChapterListWide from "../UI/ChapterList/ChapterListWide";
+
 function HotReleases(props) {
   return (
     <Paper

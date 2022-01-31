@@ -1,14 +1,14 @@
 import { Box } from "@mui/material";
 import Image from "next/image";
-import { IMAGES_FOLDER } from "../../api/constants";
+import {imageLoader} from '../../helpers/imageLoader'
 
 function ChapterPhotoList({chapterPhotos}) {
   return (
-    <Box >
+    <Box style={{padding:'2em 1em '}}>
       {chapterPhotos.map((cp) => (
         <Image
-          loader={() => `${IMAGES_FOLDER}/${cp.path}`}
-          src={`${IMAGES_FOLDER}/${cp.path}`}
+          loader={imageLoader}
+          src={cp.path}
           height={cp.height}
           width={cp.width}
           layout="responsive"

@@ -4,10 +4,10 @@ function PageDropdown() {
   return (
     <Select
       sx={{ width: "150px" }}
-      labelId="demo-simple-select-label"
-      id="demo-simple-select"
+      labelId="page-label"
+      id="page-select"
       value={10}
-      label="Poglavlje"
+      label="Stranica"
       autoWidth={true}
       onChange={() => {
         console.log();

@@ -1,14 +1,12 @@
-import { IMAGES_FOLDER } from "../../../api/constants";
 import Image from "next/image";
-import { Fragment, useEffect, useState } from "react";
-import { Link, Paper, Rating, Typography } from "@mui/material";
+import { Fragment, useEffect } from "react";
+import { Link, Paper, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-
 import { cropPhrase } from "../../../helpers/cropPhrase";
 import RateManga from "../../RateManga/RateManga";
+import {imageLoader} from '../../../helpers/imageLoader'
 
 function MangaItemWithInfo({ manga, styles, cropSummary }) {
-
 
   useEffect(() => {
     renderManga();
@@ -24,12 +22,11 @@ function MangaItemWithInfo({ manga, styles, cropSummary }) {
 
   const renderManga = () => {
     if (manga) {
-      const src = IMAGES_FOLDER + "/" + manga.coverPhoto;
       return (
-        <Paper key={manga.id} className={styles.mangaSingle}>
+        <Paper className={styles.mangaSingle}>
           <div className={styles.mangaTop}>
             <div className={styles.mangaImage}>
-              <Image loader={() => src} src={src} width={500} height={2000} />
+              <Image loader={imageLoader} src={manga.coverPhoto} width={500} height={750} />
             </div>
             <div className={styles.mangaInfo}>
               <div className={styles.mangaTitle}>
@@ -77,8 +74,8 @@ function MangaItemWithInfo({ manga, styles, cropSummary }) {
   const renderMangaCategories = (categories) => {
     const categoriesArray = categories.split(",");
     return categoriesArray.map((c) => (
-      <Fragment>
-        <Link color="secondary" href={`/kategorije/${c}`} replace>
+      <Fragment key={c}>
+        <Link color="secondary" href={`/kategorije/${c}`} replace="true">
           {c}
         </Link>
         {", "}
@@ -86,7 +83,7 @@ function MangaItemWithInfo({ manga, styles, cropSummary }) {
     ));
   };
 
-  return <Fragment>{renderManga()}</Fragment>;
+  return <Fragment key={manga.id}>{renderManga()}</Fragment>;
 }
 
 export default MangaItemWithInfo;

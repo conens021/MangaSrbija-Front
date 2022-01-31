@@ -15,7 +15,7 @@ import { Fragment, useEffect } from "react";
 import MangaItemWithInfo from "../../components/UI/MangaList/MangaItemWIthInfo";
 import ChapterList from "../../components/CapterList/ChapterList";
 
-function MostPopular(props) {
+function MangaSingle(props) {
   
   const router = useRouter();
   const { manga } = props;
@@ -95,4 +95,4 @@ export async function getStaticPaths() {
   };
 }
 
-export default MostPopular;
+export default MangaSingle;

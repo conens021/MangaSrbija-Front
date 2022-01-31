@@ -6,7 +6,6 @@ import { useOutsideOfElement } from "../../helpers/useOutsideOfElement";
 import SearchDropdown from "./SearchDropdown";
 
 function HeaderSearch({ styles }) {
-
   const [searchResult, setSearchResult] = useState([]);
   const [query, setQuery] = useState("");
   const [searchInputTouched, setSearchinputTouched] = useState(false);
@@ -41,6 +40,7 @@ function HeaderSearch({ styles }) {
     const query = event.target.value;
     if (query.length < 1) {
       setSearchResult([]);
+      setQuery(query);
       return;
     }
     try {
@@ -71,6 +71,13 @@ function HeaderSearch({ styles }) {
         onChange={inputChangeHandler}
         placeholder="Pretraži mange"
         value={query}
+        type="text"
+        aria-autocomplete="both"
+        aria-haspopup="false"
+        autocapitalize="off"
+        autocomplete="off"
+        autocorrect="off"
+        autofocus=""
       />
       {searchResult.length > 0 && (
         <SearchDropdown

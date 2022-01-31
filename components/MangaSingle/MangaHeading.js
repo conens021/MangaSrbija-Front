@@ -1,11 +1,13 @@
-import { Box, Button, Paper, Rating, Typography } from "@mui/material";
-import { Fragment, useEffect, useState } from "react";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+import { Box, Button, Paper } from "@mui/material";
+import { Fragment, useEffect } from "react";
 import WatchLaterIcon from "@mui/icons-material/WatchLater";
 import AddIcon from "@mui/icons-material/Add";
+import { useSelector } from "react-redux";
+import MangaFavorites from "./MangaFavorites";
 
 function MangaHeading({ styles, manga }) {
 
+  const user = useSelector((state) => state.user);
 
   useEffect(() => {
     renderManga();
@@ -24,14 +26,7 @@ function MangaHeading({ styles, manga }) {
             </div>
           </Box>
           <Box sx={{ display: "flex", columnGap: ".7em" }}>
-        
-            <Button
-              color="primary"
-              variant="outlined"
-              startIcon={<FavoriteIcon />}
-            >
-              Favoriti
-            </Button>
+            <MangaFavorites user={user} manga={manga}/>
             <Button
               color="secondary"
               variant="outlined"

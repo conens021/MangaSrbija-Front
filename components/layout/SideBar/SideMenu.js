@@ -11,27 +11,27 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import { useRouter } from "next/router";
+import { styled } from '@mui/system';
 
 function SideMenu() {
+  
   const router = useRouter();
 
   return (
     <List>
       <Link href="/" replace>
-        <ListItem disablePadding>
-          <ListItemButton selected={router.pathname === "/" && true}>
+          <ListItemButton selected={router.pathname === "/"}>
             <ListItemIcon>
-              <HomeIcon color="primary" />
+              <HomeIcon/>
             </ListItemIcon>
             <ListItemText primary="Početna" />
           </ListItemButton>
-        </ListItem>
       </Link>
       <Link href="/popularno" replace>
         <ListItem disablePadding>
           <ListItemButton selected={router.pathname === "/popularno" && true}>
             <ListItemIcon>
-              <LocalFireDepartmentIcon color="primary" />
+              <LocalFireDepartmentIcon />
             </ListItemIcon>
             <ListItemText primary="Popularna manga" />
           </ListItemButton>
@@ -41,7 +41,7 @@ function SideMenu() {
         <ListItem disablePadding>
         <ListItemButton selected={router.pathname === "/lista-mangi" && true}>
             <ListItemIcon>
-              <ViewListIcon color="primary" />
+              <ViewListIcon />
             </ListItemIcon>
             <ListItemText primary="Lista Mangi" />
           </ListItemButton>
@@ -50,7 +50,7 @@ function SideMenu() {
       <ListItem disablePadding>
         <ListItemButton>
           <ListItemIcon>
-            <LocalOfferIcon color="primary" />
+            <LocalOfferIcon />
           </ListItemIcon>
           <ListItemText primary="Nova Izdanja" />
         </ListItemButton>
@@ -58,7 +58,7 @@ function SideMenu() {
       <ListItem disablePadding>
         <ListItemButton>
           <ListItemIcon>
-            <ScreenSearchDesktopIcon color="primary" />
+            <ScreenSearchDesktopIcon />
           </ListItemIcon>
           <ListItemText primary="Napredna pretraga" />
         </ListItemButton>
@@ -66,7 +66,7 @@ function SideMenu() {
       <ListItem disablePadding>
         <ListItemButton>
           <ListItemIcon>
-            <BookmarksIcon color="primary" />
+            <BookmarksIcon  />
           </ListItemIcon>
           <ListItemText primary="Kolekcija" />
         </ListItemButton>

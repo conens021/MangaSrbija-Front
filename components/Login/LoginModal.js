@@ -21,7 +21,6 @@ function LoginModal({ styles }) {
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
-
   const loginModalVisible = useSelector((state) => state.showLoginModal);
 
   const dispatch = useDispatch();

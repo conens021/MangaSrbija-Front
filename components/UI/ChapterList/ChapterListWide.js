@@ -2,18 +2,17 @@ import { Box } from "@mui/system";
 import Image from "next/image";
 import "react-multi-carousel/lib/styles.css";
 import styles from "../../../styles/Home.module.css";
-import { IMAGES_FOLDER } from "../../../api/constants";
 import { Fragment } from "react";
 import Link from "next/link";
+import { imageLoader } from "../../../helpers/imageLoader";
 
 function ChapterListWide({ chapters }) {
   const renderSingleChapter = (chapter) => {
-    const src = `${IMAGES_FOLDER}/${chapter.coverPhoto}`;
     return (
       <Fragment>
         <div className={styles.imageWrapper}>
           <Image
-            loader={() => src}
+            loader={imageLoader}
             src={chapter.coverPhoto}
             width={90}
             height={90}
@@ -32,9 +31,8 @@ function ChapterListWide({ chapters }) {
   return (
     <Box sx={{ display: "flex", columnGap: ".7em" }}>
       {chapters.map((chapter) => (
-        <Link href={`/poglavlje/${chapter.chapterId}`}>
+        <Link  key={chapter.chapterId} href={`/poglavlje/${chapter.chapterId}`}>
           <Box
-            key={chapter.chapterId}
             style={{
               display: "flex",
               flexDirection: "column",

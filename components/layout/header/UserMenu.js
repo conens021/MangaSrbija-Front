@@ -2,13 +2,16 @@ import { AccountCircle } from "@mui/icons-material";
 import { IconButton, Menu, MenuItem, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Cookies from "universal-cookie";
 
-function UserMenu({ styles }) {
+function UserMenu({ styles,userLogout }) {
+
   const [anchorEl, setAnchorEl] = useState(null);
 
   const dispatch = useDispatch();
+
+  const user = useSelector(state => state.user)
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -20,8 +23,9 @@ function UserMenu({ styles }) {
 
   const logoutHandler = () => {
     const cookies = new Cookies();
-    cookies.remove('user')
+    cookies.remove("user");
     dispatch({ type: "USER_LOGOUT" });
+    userLogout()
   };
 
   return (
@@ -33,8 +37,8 @@ function UserMenu({ styles }) {
         alignItems: "center",
       }}
     >
-      <Box>
-        <Typography variant="text-body">@Cone021</Typography>
+      <Box sx={{ cursor: "pointer" }} onClick={handleMenu}>
+        <Typography variant="text-body">@{user ? user.user.username : ''}</Typography>
       </Box>
       <IconButton
         size="large"

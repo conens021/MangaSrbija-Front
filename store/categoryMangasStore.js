@@ -6,6 +6,7 @@ const initialState = {
   startingLetter: "",
   showLoginModal: false,
   userLogedIn: false,
+  user : null
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -24,6 +25,8 @@ const rootReducer = (state = initialState, action) => {
       return { ...state, userLogedIn: true };
     case "USER_LOGOUT":
       return { ...state, userLogedIn: false };
+    case "SET_USER":
+      return{...state,user : action.user}
     default:
       return {
         ...state,

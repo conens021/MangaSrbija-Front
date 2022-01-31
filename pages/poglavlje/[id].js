@@ -39,7 +39,7 @@ function ChapterPhotos(props) {
             <ChapterTitle manga={manga} chapter={chapter} />
             <ChapterActions chapter={chapter} mangaChapters={mangaChapters}/>
             <ChapterPhotoList chapterPhotos={chapterPhotos} />
-            <ChapterActions chapter={chapter} mangaChapters={mangaChapters}/>
+            <ChapterActions hideDropdown={true} chapter={chapter} mangaChapters={mangaChapters}/>
           </Paper>
         </main>
       </Box>

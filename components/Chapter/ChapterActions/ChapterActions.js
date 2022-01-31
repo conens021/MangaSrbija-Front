@@ -2,10 +2,10 @@ import { Box, Button } from "@mui/material";
 import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
 import ChapterDropdown from "./ChapterDropdown";
 import PageDropdown from "./PageDropdown";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { useRouter } from "next/router";
 
-function ChapterActions({ mangaChapters, chapter }) {
+function ChapterActions({ mangaChapters, chapter,hideDropdown }) {
   const chapters = [...mangaChapters];
 
   const [orderedChapters, setOrderedChapters] = useState(chapters.reverse());
@@ -46,9 +46,20 @@ function ChapterActions({ mangaChapters, chapter }) {
         Prethodno poglavlje
       </Button>
 
-      <Box sx={{ flex: "1", display: "flex", justifyContent: "center" }}>
-        <ChapterDropdown chapter={chapter} mangaChapters={mangaChapters} />
-        <PageDropdown />
+      <Box
+        sx={{
+          flex: "1",
+          display: "flex",
+          columnGap: ".5em",
+          justifyContent: "center",
+        }}
+      >
+        {!hideDropdown && (
+          <Fragment>
+            <ChapterDropdown chapter={chapter} mangaChapters={mangaChapters} />
+            <PageDropdown />
+          </Fragment>
+        )}
       </Box>
 
       <Button

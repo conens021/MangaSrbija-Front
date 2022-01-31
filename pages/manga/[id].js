@@ -50,11 +50,8 @@ function MostPopular(props) {
               columnGap: "1em",
               alignItems: "start",
               height: "100%",
-            }}
-          >
-            <Box
-              sx={{ display: "flex", flexDirection: "column", rowGap: "2em" }}
-            >
+            }} >
+            <Box sx={{ display: "flex", flexDirection: "column", rowGap: "2em" }} >
               <MangaItemWithInfo
                 cropSummary={false}
                 manga={manga}

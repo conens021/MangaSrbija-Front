@@ -1,6 +1,19 @@
 import axios from "axios";
 import { API_BASE, MANGAS } from "./constants";
 
+
+export const searchMangas = (query) => {
+  return axios
+    .get(`${API_BASE}/${MANGAS}/search/${query}`)
+    .then((r) => {
+      return r.data;
+    })
+    .catch((e) => {
+      console.log(e);
+      throw e;
+    });
+};
+
 export const getRecentlyAdded = () => {
   return axios
     .get(`${API_BASE}/${MANGAS}?orderBy=rdd&page=1&perPage=10`)

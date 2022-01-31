@@ -13,6 +13,7 @@ import Cookies from "universal-cookie";
 import { signIn } from "../../api/users";
 
 function LoginModal({ styles }) {
+  
   const cookies = new Cookies();
 
   const [userName, setUsername] = useState();

@@ -10,7 +10,7 @@ import { getRecentlyAdded, getTopRated } from "../api/mangas";
 import { getHotReleases } from "../api/chapters";
 import TopRated from "../components/TopRated/TopRated";
 import SideBar from "../components/layout/SideBar/SideBar";
-import { Box, Container, CssBaseline } from "@mui/material";
+import { Box } from "@mui/material";
 import { Fragment } from "react";
 
 function Home(props) {

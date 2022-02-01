@@ -8,6 +8,7 @@ import styles from "../../../styles/template/SideBar.module.css";
 import SideMenu from "./SideMenu";
 import { useRouter } from "next/router";
 import { Box } from "@mui/system";
+import { Paper } from "@mui/material";
 
 function SideBar({ categories }) {
   const router = useRouter();
@@ -30,7 +31,7 @@ function SideBar({ categories }) {
   };
 
   return (
-   <Box bgcolor={"background.default"} className={styles.sideBar}>
+   <Paper elevation={6} sx={{backgroundColor : "background.default"}} className={styles.sideBar}>
       <h4 className={styles.menuTitle}>Meni</h4>
 
       <SideMenu />
@@ -38,7 +39,7 @@ function SideBar({ categories }) {
       <h4 className={styles.menuTitle}>Kategorije</h4>
 
       <List>{renderCategories()}</List>
-    </Box>
+    </Paper>
   );
 }
 

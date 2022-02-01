@@ -3,6 +3,10 @@
     border-right: 1px solid #242424;
     padding-top: 2em;
     color:white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    row-gap: 1em;
 }
 .menuList{
     display: flex;

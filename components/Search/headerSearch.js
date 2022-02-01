@@ -73,11 +73,11 @@ function HeaderSearch({ styles }) {
         value={query}
         type="text"
         aria-autocomplete="both"
-        aria-haspopup="false"
-        autocapitalize="off"
-        autocomplete="off"
-        autocorrect="off"
-        autofocus=""
+        aria-haspopup={false}
+        autoCapitalize="off"
+        autoComplete="off"
+        autoCorrect="off"
+        autoFocus={false}
       />
       {searchResult.length > 0 && (
         <SearchDropdown

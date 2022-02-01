@@ -6,72 +6,81 @@ import ScreenSearchDesktopIcon from "@mui/icons-material/ScreenSearchDesktop";
 import BookmarksIcon from "@mui/icons-material/Bookmarks";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Link from "next/link";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
 import { useRouter } from "next/router";
-import { styled } from '@mui/system';
+import { Box, Paper, Typography } from "@mui/material";
+import {MenuListItem} from '../../UI/MenuList/MenuListItem'
 
 function SideMenu() {
-  
+
   const router = useRouter();
 
+  const page = router.asPath
+
+
   return (
-    <List>
+    <Box>
       <Link href="/" replace>
-          <ListItemButton selected={router.pathname === "/"}>
-            <ListItemIcon>
-              <HomeIcon/>
+        <MenuListItem selected = {page === "/"}>
+          <Box disablePadding sx={{ display: "flex", alignItems: "center" }}>
+            <ListItemIcon className="itemIcon">
+              <HomeIcon />
             </ListItemIcon>
-            <ListItemText primary="Početna" />
-          </ListItemButton>
+            <Typography>Pocetna</Typography>
+          </Box>
+        </MenuListItem>
       </Link>
       <Link href="/popularno" replace>
-        <ListItem disablePadding>
-          <ListItemButton selected={router.pathname === "/popularno" && true}>
-            <ListItemIcon>
+      <MenuListItem selected = {page === "/popularno"}>
+          <Box disablePadding sx={{ display: "flex", alignItems: "center" }}>
+            <ListItemIcon className="itemIcon">
               <LocalFireDepartmentIcon />
             </ListItemIcon>
-            <ListItemText primary="Popularna manga" />
-          </ListItemButton>
-        </ListItem>
+            <Typography>Popuplarne mange</Typography>
+          </Box>
+        </MenuListItem>
       </Link>
       <Link href="/lista-mangi" replace>
-        <ListItem disablePadding>
-        <ListItemButton selected={router.pathname === "/lista-mangi" && true}>
-            <ListItemIcon>
+      <MenuListItem selected = {page === "/lista-mangi"}>
+          <Box disablePadding sx={{ display: "flex", alignItems: "center" }}>
+            <ListItemIcon className="itemIcon">
               <ViewListIcon />
             </ListItemIcon>
-            <ListItemText primary="Lista Mangi" />
-          </ListItemButton>
-        </ListItem>
+            <Typography>Lista mangi</Typography>
+          </Box>
+        </MenuListItem>
       </Link>
-      <ListItem disablePadding>
-        <ListItemButton>
-          <ListItemIcon>
-            <LocalOfferIcon />
-          </ListItemIcon>
-          <ListItemText primary="Nova Izdanja" />
-        </ListItemButton>
-      </ListItem>
-      <ListItem disablePadding>
-        <ListItemButton>
-          <ListItemIcon>
-            <ScreenSearchDesktopIcon />
-          </ListItemIcon>
-          <ListItemText primary="Napredna pretraga" />
-        </ListItemButton>
-      </ListItem>
-      <ListItem disablePadding>
-        <ListItemButton>
-          <ListItemIcon>
-            <BookmarksIcon  />
-          </ListItemIcon>
-          <ListItemText primary="Kolekcija" />
-        </ListItemButton>
-      </ListItem>
-    </List>
+      <Link href="/lista-mangi" replace>
+      <MenuListItem selected = {page === "/nova-izdanja"}>
+          <Box disablePadding sx={{ display: "flex", alignItems: "center" }}>
+            <ListItemIcon className="itemIcon">
+              <LocalOfferIcon />
+            </ListItemIcon>
+            <Typography>Nova izdanja</Typography>
+          </Box>
+        </MenuListItem>
+      </Link>
+      <Link href="/lista-mangi" replace>
+        <MenuListItem>
+          <Box disablePadding sx={{ display: "flex", alignItems: "center" }}>
+            <ListItemIcon className="itemIcon">
+              <ScreenSearchDesktopIcon />
+            </ListItemIcon>
+            <Typography>Napredna pretraga</Typography>
+          </Box>
+        </MenuListItem>
+      </Link>
+
+      <Link href="/lista-mangi" replace>
+        <MenuListItem>
+          <Box disablePadding sx={{ display: "flex", alignItems: "center" }}>
+            <ListItemIcon className="itemIcon">
+              <BookmarksIcon />
+            </ListItemIcon>
+            <Typography>Kolekcije</Typography>
+          </Box>
+        </MenuListItem>
+      </Link>
+    </Box>
   );
 }
 

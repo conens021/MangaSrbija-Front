@@ -5,8 +5,9 @@ const initialState = {
   page: 0,
   startingLetter: "",
   showLoginModal: false,
+  showSignUpModal: false,
   userLogedIn: false,
-  user : null
+  user: null,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -19,14 +20,18 @@ const rootReducer = (state = initialState, action) => {
       return { ...state, startingLetter: action.startingLetter };
     case "SHOW_LOGIN_MODAL":
       return { ...state, showLoginModal: true };
+    case "SHOW_SIGNUP_MODAL":
+      return { ...state, showSignUpModal: true };
     case "CLOSE_LOGIN_MODAL":
       return { ...state, showLoginModal: false };
+    case "CLOSE_SIGNUP_MODAL":
+      return { ...state, showSignUpModal: false };
     case "USER_LOGIN":
       return { ...state, userLogedIn: true };
     case "USER_LOGOUT":
       return { ...state, userLogedIn: false };
     case "SET_USER":
-      return{...state,user : action.user}
+      return { ...state, user: action.user };
     default:
       return {
         ...state,

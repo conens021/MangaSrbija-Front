@@ -11,6 +11,7 @@ import { useEffect } from "react";
 function Header() {
 
   const [userLogedIn,setUserLogedIn,user] = useAuthCheck();
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,6 +19,7 @@ function Header() {
       dispatch({type:"SET_USER",user})
     }
   },[user])
+
 
   const userLogoutHandler = () => {
     setUserLogedIn(false) 

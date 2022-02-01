@@ -16,7 +16,7 @@ function PopularMangaItems({ mangas }) {
   }, [page]);
 
   async function getMangas() {
-    const response = await getMostPopular(page = page);
+    const response = await getMostPopular(page);
     const updatedMangaData = response;
     setMangasData(updatedMangaData);
   }

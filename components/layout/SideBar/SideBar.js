@@ -34,7 +34,7 @@ function SideBar({ categories }) {
    <Paper elevation={6} sx={{backgroundColor : "background.default"}} className={styles.sideBar}>
       <h4 className={styles.menuTitle}>Meni</h4>
 
-      <SideMenu />
+      <SideMenu styles={{styles}} />
 
       <h4 className={styles.menuTitle}>Kategorije</h4>
 

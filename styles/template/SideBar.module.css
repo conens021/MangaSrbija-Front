@@ -1,24 +1,53 @@
-.sideBar{
+.sideBar {
     width: 230px;
     border-right: 1px solid #242424;
     padding-top: 2em;
-    color:white;
+    color: white;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     row-gap: 1em;
 }
-.menuList{
+
+.menuList {
     display: flex;
     flex-direction: column;
 }
 
-.menuTitle{
+.menuItem {
+    background: transparent;
+    cursor: pointer;
+    color: white;
+    padding: 0.25em 1em;
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.menuItem .itemIcon {
+    color: white;
+}
+
+.menuItem:hover {
+    background: rgb(14, 14, 14, 0.35);
+}
+
+.menuItem.selected {
+     background: rgb(237, 27, 36, 0.65);
+    color: white;
+}
+
+.menuItem.selected:hover {
+    background: rgb(237, 27, 36, 0.65);
+}
+
+
+.menuTitle {
     padding-left: 2rem;
 }
 
 @media screen and (max-width:1400px) {
-    .sideBar{
-       display: none;
+    .sideBar {
+        display: none;
     }
 }

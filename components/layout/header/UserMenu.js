@@ -1,6 +1,7 @@
 import { AccountCircle } from "@mui/icons-material";
 import { IconButton, Menu, MenuItem, Typography } from "@mui/material";
 import { Box } from "@mui/system";
+import Link from "next/link";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Cookies from "universal-cookie";
@@ -65,7 +66,7 @@ function UserMenu({ styles,userLogout }) {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>Favoriti</MenuItem>
+        <Link href="/korisnik/favoriti" replace><MenuItem onClick={handleClose}>Favoriti</MenuItem></Link>
         <MenuItem onClick={handleClose}>Čitaj kasnije</MenuItem>
         <MenuItem onClick={handleClose}>Kolekcije</MenuItem>
         <MenuItem onClick={handleClose}>Profil</MenuItem>

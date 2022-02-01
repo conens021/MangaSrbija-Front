@@ -61,13 +61,47 @@ export const deleteMangaFromFavorites = (mangaId, jwt) => {
     });
 };
 
-
-
 export const getFavoriteMangas = (jwt) => {
   return axios
     .get(`${API_BASE}/${USERS}/favorites`, {
       headers: { Authorization: `Bearer ${jwt}` },
     })
+    .then((r) => {
+      return r.data;
+    })
+    .catch((e) => {
+      throw e;
+    });
+};
+
+export const deleteFavoriteManga = (jwt,id) => {
+  return axios
+    .delete(`${API_BASE}/${USERS}/favorites/${id}`, {
+      headers: { Authorization: `Bearer ${jwt}` },
+    })
+    .then((r) => {
+      return r.data;
+    })
+    .catch((e) => {
+      throw e;
+    });
+};
+
+export const getUserById = (id) => {
+  return axios
+    .get(`${API_BASE}/${USERS}/${id}`)
+    .then((r) => {
+      return r.data;
+    })
+    .catch((e) => {
+      throw e;
+    });
+};
+
+
+export const getAllUsersId = () => {
+  return axios
+    .get(`${API_BASE}/${USERS}/ids`)
     .then((r) => {
       return r.data;
     })

@@ -6,7 +6,12 @@ import ScreenSearchDesktopIcon from "@mui/icons-material/ScreenSearchDesktop";
 import BookmarksIcon from "@mui/icons-material/Bookmarks";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Link from "next/link";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
 import { useRouter } from "next/router";
+import styled from "styled-components";
 import { Box, Paper, Typography } from "@mui/material";
 import {MenuListItem} from '../../UI/MenuList/MenuListItem'
 
@@ -33,7 +38,7 @@ function SideMenu() {
       <MenuListItem selected = {page === "/popularno"}>
           <Box disablePadding sx={{ display: "flex", alignItems: "center" }}>
             <ListItemIcon className="itemIcon">
-              <LocalFireDepartmentIcon />
+              <HomeIcon />
             </ListItemIcon>
             <Typography>Popuplarne mange</Typography>
           </Box>

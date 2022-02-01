@@ -109,3 +109,14 @@ export const getAllUsersId = () => {
       throw e;
     });
 };
+
+export const checIskUsernameAvailable = (username) => {
+  return axios
+    .get(`${API_BASE}/${USERS}/available-username/${username}`)
+    .then((r) => {
+      return r.data;
+    })
+    .catch((e) => {
+      throw e;
+    });
+};

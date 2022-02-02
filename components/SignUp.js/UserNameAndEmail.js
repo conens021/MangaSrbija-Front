@@ -1,6 +1,6 @@
 import { Box, TextField } from "@mui/material";
 import { useState } from "react";
-import LinearProgress from '@mui/material/LinearProgress';
+import LinearProgress from "@mui/material/LinearProgress";
 
 import { checIskUsernameAvailable } from "../../api/users";
 
@@ -14,6 +14,14 @@ function UserNameAndEmail({ styles, checkIsEnterPressed }) {
   const [usernameTouched, setUsernameTouched] = useState(false);
 
   const [usernameAvailable, setUserNameAvailable] = useState(false);
+
+  const [email, setEmail] = useState();
+
+  const [emailTouched, setEmailTouched] = useState(false);
+
+  const [emailAvailable, setEmailAvailable] = useState(false);
+
+  const [emailLoading, setEmailLoading] = useState(false);
 
   const usernameChangeHandler = async (event) => {
     setLoading(true);
@@ -42,6 +50,33 @@ function UserNameAndEmail({ styles, checkIsEnterPressed }) {
     setUsername(usernameValue);
   };
 
+  const emailChangeHandler = async (event) => {
+    setEmailLoading(true);
+
+    const emailValue = event.target.value;
+
+    if (sarchDelay) {
+      clearTimeout(sarchDelay);
+    }
+
+    sarchDelay = setTimeout(async () => {
+      try {
+        await checIskUsernameAvailable(emailValue);
+        setEmailAvailable(true);
+        setEmailTouched(true);
+        setEmailLoading(false);
+      } catch (e) {
+        if (e.request) {
+          if (e.request.status === 409) {
+            setEmailAvailable(false);
+          }
+        }
+        setEmailLoading(false);
+      }
+    }, 700);
+    setEmail(emailValue);
+  };
+
   const keyUpHandler = (event) => {
     checkIsEnterPressed(event);
   };
@@ -49,9 +84,12 @@ function UserNameAndEmail({ styles, checkIsEnterPressed }) {
   const userNameNotValid = !usernameAvailable && usernameTouched;
   const userNameValid = usernameAvailable && usernameTouched;
 
+  const emailNotValid = !emailAvailable && emailTouched;
+  const emailValid = emailAvailable && emailTouched;
+
   return (
     <Box className={styles.formRow}>
-      <Box sx={{display:'flex',flexDirection:'column'}}>
+      <Box sx={{ display: "flex", flexDirection: "column" }}>
         <TextField
           color={userNameValid && "success"}
           id="name"
@@ -66,16 +104,21 @@ function UserNameAndEmail({ styles, checkIsEnterPressed }) {
         {loading && <LinearProgress />}
       </Box>
 
-      <TextField
-        sx={{ flex: "1" }}
-        color=""
-        id="email"
-        label="Imejl adresa"
-        InputProps={{ disableUnderline: true }}
-        onChange={usernameChangeHandler}
-        onKeyUp={keyUpHandler}
-        required
-      />
+      <Box sx={{ flex: "1", display: "flex", flexDirection: "column" }}>
+        <TextField
+          color={emailValid && "success"}
+          sx={{ flex: "1" }}
+          id="email"
+          label={emailValid ? "Email adresa dostupna" : "Email adresa"}
+          InputProps={{ disableUnderline: true }}
+          onChange={emailChangeHandler}
+          onKeyUp={keyUpHandler}
+          required
+          helperText={emailNotValid ? "Email adresa vec postoji" : ""}
+          error={emailNotValid}
+        />
+        {emailLoading && <LinearProgress />}
+      </Box>
     </Box>
   );
 }

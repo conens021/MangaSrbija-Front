@@ -1,12 +1,20 @@
 import { Box, TextField } from "@mui/material";
 import { Fragment, useState } from "react";
+import MainPassword from "./MainPassword";
 
 function PasswordFields({ styles, checkIsEnterPressed }) {
-  
-  const [password, setPassword] = useState();
 
-  const passwordChangeHandler = (event) => {
-    setPassword(event.target.value);
+  const [mainPassword, setMainPassword] = useState("");
+
+  const [repeatPassowrd, setRepeatPassword] = useState("");
+
+  const repeatPasswordChangeHandler = (event) => {
+    const repeatPassowrdValue = event.target.value;
+    console.log(`Repeat pass: ${repeatPassowrdValue}`);
+    setRepeatPassword(repeatPassowrdValue)
+  };
+  const mainPasswordChangedHandler = (value) => {
+    console.log(`Main pass: ${value}`);
   };
 
   const keyUpHandler = (event) => {
@@ -16,16 +24,9 @@ function PasswordFields({ styles, checkIsEnterPressed }) {
   return (
     <Fragment>
       <Box className={styles.formRow}>
-        <TextField
-          style={{ flex: "1" }}
-          id="outlined-password-input"
-          label="Lozinka"
-          type="password"
-          autoComplete="current-password"
-          InputProps={{ disableUnderline: true }}
-          onChange={passwordChangeHandler}
-          onKeyUp={keyUpHandler}
-          required
+        <MainPassword
+          checkIsEnterPressed={keyUpHandler}
+          passwordChanged={mainPasswordChangedHandler}
         />
       </Box>
 
@@ -37,7 +38,7 @@ function PasswordFields({ styles, checkIsEnterPressed }) {
           type="password"
           autoComplete="current-password"
           InputProps={{ disableUnderline: true }}
-          onChange={passwordChangeHandler}
+          onChange={repeatPasswordChangeHandler}
           onKeyUp={keyUpHandler}
           required
         />

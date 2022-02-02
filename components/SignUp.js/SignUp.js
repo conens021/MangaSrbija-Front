@@ -16,7 +16,7 @@ import Cookies from "universal-cookie";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import UserNameAndEmail from "./UserNameAndEmail";
-import PasswordFields from "./PasswordFields";
+import PasswordFields from "./Password/PasswordFields";
 import DateOfBorn from "./DateOfBorn";
 import StateAndCity from "./StateAndCity";
 

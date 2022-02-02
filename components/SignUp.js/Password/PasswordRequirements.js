@@ -11,9 +11,6 @@ function PassowrdRequirements({password}) {
   const hasLowerCaseLater  = /[a-z]/.test(password)
   const hasNumber  = /[0-9]/.test(password)
 
-  console.log(password.length)
-  console.log(has8chars)
-
   return (
     <div>
       Lozinka mora da sadrzi minimum:

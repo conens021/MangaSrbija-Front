@@ -1,12 +1,14 @@
 import { TextField } from "@mui/material";
-import { useEffect, useState } from "react";
-import PasswordRequirements from './PasswordRequirements'
+import { Fragment, useEffect, useState } from "react";
+import PasswordRequirements from "./PasswordRequirements";
+import {getStrength,valid,isAllPresent } from './PasswordStrengthValues'
 
-function MainPassword({ checkIsEnterPressed, passwordChanged }) {
+function MainPassword({ checkIsEnterPressed, passwordChanged,setPasswordStrenght }) {
+
   const [password, setPassword] = useState("");
   const [passwordTouched, setPasswordTouched] = useState(false);
   const [isPasswordValid, setPasswordValid] = useState(false);
-  const [passwordStrength, setPasswordStrenght] = useState();
+
 
   useEffect(() => {
     if (passwordTouched) {
@@ -19,39 +21,39 @@ function MainPassword({ checkIsEnterPressed, passwordChanged }) {
     setPassword(passwordValue);
     passwordChanged(passwordValue);
     setPasswordTouched(true);
+    setPasswordStrenght(getStrength(passwordValue))
   };
   const keyUpHandler = (event) => {
     checkIsEnterPressed(event);
   };
 
   const validatePassword = () => {
-    const isValid = eightCharsOneUpperOneLowerOneNumber();
+    const isValid = valid(password) || isAllPresent(password) ;
     setPasswordValid(isValid);
     return isValid;
   };
 
-  const eightCharsOneUpperOneLowerOneNumber = () => {
-    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
-    return regex.test(password);
-  };
-
-  const passwordNotValid = !isPasswordValid && passwordTouched
+  const passwordNotValid = !isPasswordValid && passwordTouched;
 
   return (
-    <TextField
-      style={{ flex: "1" }}
-      id="outlined-password-input"
-      label="Lozinka"
-      type="password"
-      autoComplete="current-password"
-      InputProps={{ disableUnderline: true }}
-      onChange={passwordChangeHandler}
-      onKeyUp={keyUpHandler}
-      required
-      color = {isPasswordValid && 'success'}
-      error = {passwordNotValid}
-      helperText = {passwordNotValid ? <PasswordRequirements password={password}/>: ""}
-    />
+    <Fragment>
+      <TextField
+        style={{ flex: "1" }}
+        id="outlined-password-input"
+        label="Lozinka"
+        type="password"
+        autoComplete="current-password"
+        InputProps={{ disableUnderline: true }}
+        onChange={passwordChangeHandler}
+        onKeyUp={keyUpHandler}
+        required
+        color={isPasswordValid && "success"}
+        error={passwordNotValid}
+        helperText={
+          passwordNotValid ? <PasswordRequirements password={password} /> : ""
+        }
+      />
+    </Fragment>
   );
 }
 

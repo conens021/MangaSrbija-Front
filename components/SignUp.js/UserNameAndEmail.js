@@ -7,6 +7,7 @@ import { checIskUsernameAvailable } from "../../api/users";
 let sarchDelay = null;
 
 function UserNameAndEmail({ styles, checkIsEnterPressed }) {
+  
   const [usernameLoading, setUsernameLoading] = useState(false);
 
   const [userName, setUsername] = useState("");

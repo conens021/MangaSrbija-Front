@@ -1,17 +1,25 @@
 import { Box, TextField } from "@mui/material";
 import { Fragment, useState } from "react";
+import LinearProgressWithLabel from "../../UI/ProgressWithLabel/LinearProgressWithLabel";
 import MainPassword from "./MainPassword";
+import {getStrengthColor,getStrengthText} from './PasswordStrengthValues'
 
 function PasswordFields({ styles, checkIsEnterPressed }) {
 
   const [mainPassword, setMainPassword] = useState("");
 
+  const [passwordStrength, setPasswordStrenght] = useState(0);
+
   const [repeatPassowrd, setRepeatPassword] = useState("");
+
+  const strengthColor = getStrengthColor(passwordStrength)
+  const strengthText = getStrengthText(passwordStrength)
+
 
   const repeatPasswordChangeHandler = (event) => {
     const repeatPassowrdValue = event.target.value;
     console.log(`Repeat pass: ${repeatPassowrdValue}`);
-    setRepeatPassword(repeatPassowrdValue)
+    setRepeatPassword(repeatPassowrdValue);
   };
   const mainPasswordChangedHandler = (value) => {
     console.log(`Main pass: ${value}`);
@@ -21,15 +29,30 @@ function PasswordFields({ styles, checkIsEnterPressed }) {
     checkIsEnterPressed(event);
   };
 
+  const passwordStrengthHandler = (value) => {
+    setPasswordStrenght(value);
+    console.log(value);
+  };
+
+
+
   return (
     <Fragment>
       <Box className={styles.formRow}>
         <MainPassword
+          setPasswordStrenght={passwordStrengthHandler}
           checkIsEnterPressed={keyUpHandler}
           passwordChanged={mainPasswordChangedHandler}
         />
       </Box>
-
+      {}
+      <Box className={styles.formRow}>
+        <LinearProgressWithLabel
+          progress={passwordStrength}
+          color={strengthColor}
+          text={strengthText}
+        />
+      </Box>
       <Box className={styles.formRow}>
         <TextField
           style={{ flex: "1" }}

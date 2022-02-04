@@ -1,7 +1,25 @@
 
+export function isAllPresent(str) {
+  // Regex to check if a string
+  // contains uppercase, lowercase
+  // special character & numeric value
+  var pattern = new RegExp(
+    "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[-+_!@#$%^&*.,?]).+$"
+  )
+
+  return pattern.test(str)
+}
+
+
+export function valid (value){
+  const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+  return regex.test(value);
+};
+
+
 export const getStrength = (password) => {
 
-    if(isAllPresent(password) && password.length >= 10) return 100
+    if(isAllPresent(password) && password.length >= 12) return 100
 
     if(isAllPresent(password)) return 70
 
@@ -25,19 +43,3 @@ export const getStrengthText = (strengthValue) => {
   if(strengthValue === 100) return 'Jaka'
 } 
 
-export function isAllPresent(str) {
-    // Regex to check if a string
-    // contains uppercase, lowercase
-    // special character & numeric value
-    var pattern = new RegExp(
-      "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[-+_!@#$%^&*.,?]).+$"
-    )
-
-    return pattern.test(str)
-}
-
-
-export function valid (value){
-    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
-    return regex.test(value);
-  };

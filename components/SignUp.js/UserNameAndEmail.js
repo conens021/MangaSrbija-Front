@@ -1,5 +1,5 @@
 import { Box, TextField } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LinearProgress from "@mui/material/LinearProgress";
 
 import { checIskUsernameAvailable } from "../../api/users";
@@ -7,7 +7,6 @@ import { checIskUsernameAvailable } from "../../api/users";
 let sarchDelay = null;
 
 function UserNameAndEmail({ styles, checkIsEnterPressed }) {
-  
   const [usernameLoading, setUsernameLoading] = useState(false);
 
   const [userName, setUsername] = useState("");
@@ -28,7 +27,6 @@ function UserNameAndEmail({ styles, checkIsEnterPressed }) {
 
   const emailNotValidMsg = "Nije validna email adresa";
 
-
   const usernameChangeHandler = async (event) => {
     setUsernameLoading(true);
 
@@ -47,9 +45,11 @@ function UserNameAndEmail({ styles, checkIsEnterPressed }) {
       } catch (e) {
         if (e.request) {
           if (e.request.status === 409) {
+
             setUserNameAvailable(false);
           }
         }
+        setUsernameTouched(true);
         setUsernameLoading(false);
       }
     }, 700);
@@ -77,6 +77,7 @@ function UserNameAndEmail({ styles, checkIsEnterPressed }) {
             setEmailAvailable(false);
           }
         }
+        setEmailTouched(true);
         setEmailLoading(false);
       }
     }, 700);
@@ -99,11 +100,15 @@ function UserNameAndEmail({ styles, checkIsEnterPressed }) {
     return regex.test(email);
   };
 
+  useEffect(() => {
+    console.log(usernameAvailable);
+  }, [usernameAvailable]);
+
   const userNameNotAvailable = !usernameAvailable && usernameTouched;
   const userNameNotValid = !validateUsername() && usernameTouched;
 
   const emailNotAvailable = !emailAvailable && emailTouched;
-  const emailNotValid =  !validateEmail() && emailTouched;
+  const emailNotValid = !validateEmail() && emailTouched;
 
   return (
     <Box className={styles.formRow}>
@@ -129,7 +134,7 @@ function UserNameAndEmail({ styles, checkIsEnterPressed }) {
       </Box>
 
       <Box sx={{ flex: "1", display: "flex", flexDirection: "column" }}>
-      <TextField
+        <TextField
           color={!emailTouched ? "" : "success"}
           id="name"
           label="Email adresa"

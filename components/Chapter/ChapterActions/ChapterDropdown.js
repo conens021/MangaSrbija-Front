@@ -31,7 +31,7 @@ function ChapterDropdown({ mangaChapters, chapter }) {
         sx={{minWidth:'250px'}}
       >
         {mangaChapters.map((chapter) => (
-          <MenuItem  value={chapter.id} sx={{display:'flex'}}>
+          <MenuItem key={chapter.id} value={chapter.id} sx={{display:'flex'}}>
             <ListItemText primary={chapter.name} />
           </MenuItem>
         ))}

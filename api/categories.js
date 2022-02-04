@@ -2,7 +2,7 @@ import axios from "axios";
 
 import {API_BASE,CATEGORIES} from './constants'
 
-export const getCategories = () => {
+export const getCategories = async() => {
   return axios
     .get(`${API_BASE}/${CATEGORIES}`)
     .then((r) => {

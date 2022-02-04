@@ -5,7 +5,7 @@ function MangaListSmallGrid({ mangas }) {
   return (
     <div className={styles.mangaListGrid}>
       {mangas.map((manga) => (
-        <MangaListSmallItem styles={styles} manga={manga} />
+        <MangaListSmallItem key={manga.id} styles={styles} manga={manga} />
       ))}
     </div>
   );

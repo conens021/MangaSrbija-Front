@@ -100,7 +100,7 @@ function MangaItemWithInfo({ manga, styles, cropSummary }) {
     }
   };
 
-  const renderMangaCategories = (categories) => {
+  const renderMangaCategories = (categories = '') => {
     const categoriesArray = categories.split(",");
     return categoriesArray.map((c) => (
       <Fragment key={c}>

@@ -3,7 +3,7 @@ import { Fragment, useEffect, useState } from "react";
 import PasswordRequirements from "./PasswordRequirements";
 import {getStrength,valid,isAllPresent } from './PasswordStrengthValues'
 
-function MainPassword({ checkIsEnterPressed, passwordChanged,setPasswordStrenght }) {
+function MainPassword({ checkIsEnterPressed, passwordChanged,setPasswordStrenght,passwordIsValidHandler }) {
 
   const [password, setPassword] = useState("");
   const [passwordTouched, setPasswordTouched] = useState(false);
@@ -28,8 +28,11 @@ function MainPassword({ checkIsEnterPressed, passwordChanged,setPasswordStrenght
   };
 
   const validatePassword = () => {
+    
     const isValid = valid(password) || isAllPresent(password) ;
     setPasswordValid(isValid);
+    passwordIsValidHandler(isValid)
+
     return isValid;
   };
 

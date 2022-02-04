@@ -7,32 +7,26 @@ import MangaCategorySorting from "../../components/MangaCategory/MangaCategorySo
 import CategoryTags from "../../components/MangaCategory/CategoryTags";
 import AppPagination from "../../components/UI/AppPagination";
 import MangaCategoryItems from "../../components/MangaCategory/MangaCategoryItems";
-import { Fragment,useEffect } from "react";
+import { Fragment, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Box } from "@mui/system";
 import { useRefreshState } from "../../store/useRefreshState";
 
-function CategoryPage(props) {
-
+function CategoryPage({categories = [],mangas=[]}) {
   const router = useRouter();
   const dispatch = useDispatch();
-  const { categories } = props;
-  const { mangas } = props;
   const categoryName = router.query.name;
-  const [refreshState] = useRefreshState()
+  const [refreshState] = useRefreshState();
 
   useEffect(() => {
     dispatch({ type: "SET_ORDER_BY", orderBy: "" });
-    console.log("dispatching action...");
   }, [router]);
 
   useEffect(() => {
-  
     router.events.on("routeChangeStart", refreshState);
 
     return () => {
       router.events.off("routeChangeStart", refreshState);
-
     };
   }, []);
 
@@ -74,7 +68,6 @@ function CategoryPage(props) {
 }
 
 export async function getStaticProps(context) {
-  
   const categories = await getCategories();
 
   const { params } = context;
@@ -94,13 +87,20 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-  const categories = await getCategories();
+  let categories = [];
+  let paths = [];
 
-  const paths = categories.map((category) => {
-    return {
-      params: { name: category.name },
-    };
-  });
+  try {
+    categories = await getCategories();
+
+    paths = await categories.map((category) => {
+      return {
+        params: { name: category.name },
+      };
+    });
+  } catch (e) {
+    console.log(e);
+  }
 
   return {
     fallback: true,

@@ -1,5 +1,6 @@
-import { Typography } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
+import Image from "next/image";
 import { IMAGES_FOLDER } from "../../api/constants";
 
 function MangaMain({ manga }) {

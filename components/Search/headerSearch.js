@@ -71,7 +71,6 @@ function HeaderSearch({ styles }) {
         onChange={inputChangeHandler}
         placeholder="Pretraži mange"
         value={query}
-        type="text"
         aria-autocomplete="both"
         aria-haspopup={false}
         autoCapitalize="off"

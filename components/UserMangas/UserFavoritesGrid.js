@@ -52,6 +52,7 @@ function UserFavoritesGrid() {
         <div className={styles.mangaListGrid}>
           {mangas.map((manga) => (
             <div
+              key={manga.id}
               style={{
                 display: "flex",
                 flexDirection: "column",

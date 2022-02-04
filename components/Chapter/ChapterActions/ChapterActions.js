@@ -5,34 +5,43 @@ import PageDropdown from "./PageDropdown";
 import { Fragment, useState } from "react";
 import { useRouter } from "next/router";
 
-function ChapterActions({ mangaChapters, chapter,hideDropdown }) {
+function ChapterActions({ mangaChapters = [], chapter = {}, hideDropdown }) {
   const chapters = [...mangaChapters];
 
   const [orderedChapters, setOrderedChapters] = useState(chapters.reverse());
 
   const router = useRouter();
 
-  const isFirstChapter = chapter.id !== orderedChapters[0].id;
-  const isLastChapter = chapter.id !== orderedChapters.at(-1).id;
+  const isFirstChapter = (!chapter || orderedChapters.length ===0)
+    ? false
+    : chapter.id !== orderedChapters[0].id;
+  const isLastChapter = (!chapter || orderedChapters.length ===0)
+    ? false
+    : chapter.id !== orderedChapters.at(-1).id;
 
   const nextChapter = () => {
-    const isCurrentChapter = (element) => element.id === chapter.id;
+    if (chapter && chapters.length > 0) {
+      const isCurrentChapter = (element) => element.id === chapter.id;
 
-    const currentChapterIndex = orderedChapters.findIndex(isCurrentChapter);
+      const currentChapterIndex = orderedChapters.findIndex(isCurrentChapter);
 
-    const nextElement = orderedChapters[currentChapterIndex + 1];
+      let nextElement = {};
+      nextElement = orderedChapters[currentChapterIndex + 1];
 
-    router.push(`/poglavlje/${nextElement.id}`);
+      router.push(`/poglavlje/${nextElement.id}`);
+    }
   };
 
   const previusChapter = () => {
-    const isCurrentChapter = (element) => element.id === chapter.id;
+    if (chapter && chapters.length > 0) {
+      const isCurrentChapter = (element) => element.id === chapter.id;
 
-    const currentChapterIndex = orderedChapters.findIndex(isCurrentChapter);
+      const currentChapterIndex = orderedChapters.findIndex(isCurrentChapter);
+      let previusElement = {};
+      previusElement = orderedChapters[currentChapterIndex - 1];
 
-    const previusElement = orderedChapters[currentChapterIndex - 1];
-
-    router.push(`/poglavlje/${previusElement.id}`);
+      router.push(`/poglavlje/${previusElement.id}`);
+    }
   };
 
   return (

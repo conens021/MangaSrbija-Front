@@ -2,19 +2,19 @@ import { Box, TextField } from "@mui/material";
 import { Fragment, useState } from "react";
 import LinearProgressWithLabel from "../../UI/ProgressWithLabel/LinearProgressWithLabel";
 import MainPassword from "./MainPassword";
-import {getStrengthColor,getStrengthText} from './PasswordStrengthValues'
+import { getStrengthColor, getStrengthText } from "./PasswordStrengthValues";
 
 function PasswordFields({ styles, checkIsEnterPressed }) {
-
   const [mainPassword, setMainPassword] = useState("");
+  const [mainPasswordValid, setMainPasswordValid] = useState(false);
 
   const [passwordStrength, setPasswordStrenght] = useState(0);
 
   const [repeatPassowrd, setRepeatPassword] = useState("");
 
-  const strengthColor = getStrengthColor(passwordStrength)
-  const strengthText = getStrengthText(passwordStrength)
+  const strengthColor = getStrengthColor(passwordStrength);
 
+  const strengthText = getStrengthText(passwordStrength);
 
   const repeatPasswordChangeHandler = (event) => {
     const repeatPassowrdValue = event.target.value;
@@ -34,25 +34,30 @@ function PasswordFields({ styles, checkIsEnterPressed }) {
     console.log(value);
   };
 
-
+  const passwordIsValidHandler = (isValid) => {
+    setMainPasswordValid(isValid);
+  };
 
   return (
     <Fragment>
       <Box className={styles.formRow}>
         <MainPassword
+          passwordIsValidHandler={passwordIsValidHandler}
           setPasswordStrenght={passwordStrengthHandler}
           checkIsEnterPressed={keyUpHandler}
           passwordChanged={mainPasswordChangedHandler}
         />
       </Box>
-      {}
-      <Box className={styles.formRow}>
-        <LinearProgressWithLabel
-          progress={passwordStrength}
-          color={strengthColor}
-          text={strengthText}
-        />
-      </Box>
+      {mainPasswordValid &&
+          (<Box className={styles.formRow}>
+          <LinearProgressWithLabel
+            progress={passwordStrength}
+            color={strengthColor}
+            text={strengthText}
+          />
+        </Box>)
+      }
+  
       <Box className={styles.formRow}>
         <TextField
           style={{ flex: "1" }}

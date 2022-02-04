@@ -15,12 +15,9 @@ import { Fragment, useEffect } from "react";
 import MangaItemWithInfo from "../../components/UI/MangaList/MangaItemWIthInfo";
 import ChapterList from "../../components/CapterList/ChapterList";
 
-function MangaSingle(props) {
+function MangaSingle({manga = {},categories = [],chapters = []}) {
   
   const router = useRouter();
-  const { manga } = props;
-  const { categories } = props;
-  const { chapters } = props;
 
   const [refreshState] = useRefreshState();
 

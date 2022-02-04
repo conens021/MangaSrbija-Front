@@ -6,7 +6,7 @@ function ChapterPhotoList({chapterPhotos}) {
   return (
     <Box style={{padding:'2em 1em '}}>
       {chapterPhotos.map((cp) => (
-        <Image
+        <Image key={cp.id}
           loader={imageLoader}
           src={cp.path}
           height={cp.height}
